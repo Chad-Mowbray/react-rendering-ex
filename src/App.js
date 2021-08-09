@@ -1,23 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
+import { Component, useEffect, useState } from 'react';
+import Child from './Child';
+
+
+
+// class App extends Component {
+
+//   state = {
+//     trigger: false
+//   }
+
+//   handleClick = () => {
+//     this.setState({trigger:!this.state.trigger})
+//   }
+
+//   componentDidMount =() => {
+//     console.log("App mounted")
+//   }
+
+//   shouldComponentUpdate = (updatedProps, updatedState) => {
+//     console.log("App should update?")
+//     return true
+//   }
+
+//   render() {
+//     return (
+//       <div className="App">
+//         <h1 onClick={this.handleClick}>App Commponent</h1>
+//         {this.state.trigger && <Child />}
+//       </div>
+//     );
+//   }
+// }
 
 function App() {
+
+  const [trigger, setTrigger] = useState(false)
+
+  useEffect( () => {
+    console.log("App useEffect called")
+  }, [trigger])
+
+  const handleClick = () => {
+    setTrigger((prevTrigger) => !prevTrigger)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 onClick={handleClick}>App Commponent</h1>
+       <Child />
     </div>
   );
 }
